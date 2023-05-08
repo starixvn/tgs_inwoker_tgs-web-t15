@@ -4,7 +4,7 @@
 	branch = master
 [submodule "src/components/App/Account"]
 	path = src/components/App/Account
-	url =  https://gitlab+deploy-token-744236:tkwZbhR5StpEcquEPfkH@gitlab.com/inwoker/tgs/tgs-web-profile.git
+	url = https://gitlab+deploy-token-744236:tkwZbhR5StpEcquEPfkH@gitlab.com/inwoker/tgs/tgs-web-profile.git
 	branch = master
 [submodule "src/api-services"]
 	path = src/api-services
