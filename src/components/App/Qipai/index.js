@@ -310,9 +310,7 @@ const Qipai = (props) => {
                       <img
                         src={
                           process.env.PUBLIC_URL +
-                          `/assets/images/pcGamePage/qipai/${
-                            data.abbreviation
-                          }${
+                          `/assets/images/pcGamePage/qipai/${data.abbreviation.toLowerCase()}${
                             index === selected
                               ? "-selected.png"
                               : "-not-selected.png"
