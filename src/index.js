@@ -95,7 +95,7 @@ document.getElementById("root").style.fontFamily = fontFamily;
 var muiThemeMode = isMobileOnly
   ? themeList[Config.brand] || themeList[Config.theme]
   : themeList[Config.theme];
-muiThemeMode.lang = i18n.language;
+
 const muiTheme = createMuiTheme({
   palette: {
     primary: {

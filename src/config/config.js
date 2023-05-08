@@ -5,15 +5,15 @@ import featureList from "./features";
 var wapTemplate = window?.env?.wapTemplate || 15; //2 for T2, 3 for T3 (based on .xd file)
 
 const config = {
-  baseUrl: window?.env?.apiUrl || (window?.env ? "/api/" : "https://stg-t1.rpgp.cc/api/"),
+  baseUrl: window?.env?.apiUrl || (window?.env ? "/api/" : "https://stg-sky8.rpgp.cc/api/"),
   client:
     window?.env?.client ||
-    "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
-  currency: window?.env?.currency || "CNY",
-  brand: window?.env?.brand || process.env.REACT_APP_BRAND || "PGG",
+    "GWcE0mhlG0JeDmwadQAa5Gfuz7BGEfIWYCVwPPXmVQOQWu5ibE1fsX",
+  currency: window?.env?.currency || "HKD",
+  brand: window?.env?.brand || process.env.REACT_APP_BRAND || "SKY8",
   brandName: window?.env?.brandName
     ? window?.env?.brandName
-    : window?.env?.brand || "PGG",
+    : window?.env?.brand || "SKY8",
   wapVersion: wapTemplate,
   theme: window?.env?.theme || (isMobileOnly ? `wapT${wapTemplate}` : "wapT5"),
   sourceUrl: window?.env?.sourceUrl || "https://images.srvptt.com/",
