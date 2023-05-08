@@ -549,7 +549,51 @@ export const wapT10 = {
   popoverGameTypeText: "#4bc5cb",
   popoverSubWalletText: "#000",
 };
+export const wapT15 = {
+  appbar: "transparent",
+  loginBody: "#F0EFF5",
+  loginText: "#676767",
+  body: "#F0EFF5",
+  bodyBackground: "#3C3C3C",
+  variant: "wapT8",
+  primary: "#CEB296",
+  primaryRgb: "101, 138, 248",
+  primaryText: "#d2b79c",
+  wapSecondary:"#d2b79c",
+  primaryGradient: "#CEB296",
+  primaryGradientRgb: "101, 138, 248",
+  primaryHightlight: "#fde73f",
+  secondary: "#676767",
+  secondaryText: "#9facc5",
+  tertiary: "rgba(255, 255, 255, 1)",
+  tertiaryText: "rgba(255, 255, 255, 0.5)",
+  buttonText: "#ffffff",
+  buttonBackground: "#CEB296",
+  buttonText2: "#fff",
+  bottomnav: "#f5f5f5",
+  balance: "#CEB296",
+  bottomnavrad: "35px 35px 0px 0px",
+  bottomNavAction: "#585858",
+  tabbar: "#fff",
+  cardText: "#676767",
+  supportBg: `url(${
+    process.env.PUBLIC_URL + `/assets/images/wapp/resource/T5/supportbg.png`
+  })
+  no-repeat center,  linear-gradient(180deg, rgb(5 30 74) 40%, rgba(12,21,37,1) 100%)`,
+  gameTab: "#fff",
+  gamelisterBg: "#fff",
+  gamelisterOriginalColor: "#9fa3b4",
+  gamelisterOriginalText: "#000",
+  gamelisterBorder: "solid 2px #fff",
+  gamelisterSelectedText: "#fff",
+  gamelisterSelectedIcon: "#fff",
+  gamelisterSelectedButton: " rgb(140,166,241)",
 
+  popoverBackground: "rgba(255,255,255,0.95)",
+  popoverGameTypeText: "#658AF8",
+  popoverSubWalletText: "#000",
+  bannerRadius:"0px"
+};
 export const themeList = {
   red: themeRed,
   blue: themeBlue,
@@ -566,4 +610,5 @@ export const themeList = {
   GMO: GMO,
   PB: PB,
   wapT10: wapT10,
+  wapT15: wapT15,
 };
