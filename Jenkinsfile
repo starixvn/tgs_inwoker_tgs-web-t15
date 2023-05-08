@@ -1,29 +1,34 @@
 @Library('global-shared-library') _
 def componentArray = [];
-def componentArrayMerged = [];
 def message = "";
 pipeline {
 	agent any
 	environment {
         TAG = sh(script: "echo `date +%Y-%m%d-%H%M`", returnStdout: true).trim()
+		GitUrl = "gitlab.com/inwoker/tgs/tgs-web-t15.git"
         Registry = "pgtgs/"
-        GitUrl = "gitlab.com/inwoker/tgs/tgs-web-t5.git"
-        ImageTagUrl = "https://gitlab.com/api/v4/projects/20478010/registry/repositories/2272073/tags"
-        dockerhub = credentials('dockerhub')
-        Image = "lobby-t5"
+        LobbyName = "lobby-t15"
+		ApiKey = "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ"
+		Brand = "T15"
+		Theme = "wapT15" 
+		Template = "15"
+		DefaultCurrency = "HKD"
+		DefaultLanguage = "zh-TW"
     }
 	
     stages {		    	
         stage('Prepare Env') {
             steps {
-                sh "docker login -u ${dockerhub_USR} -p ${dockerhub_PSW}"
+                cleanWs()
+                checkout scm
                 sh "echo 'Branch: ${env.GIT_BRANCH}'";
                 script {
                     switch(env.GIT_BRANCH)
                     {
                         case ['master', 'origin/master']:
                             env.kube_ns = "prod";
-                            env.k8s_config = 'prod-k8s-config';	
+							env.domain = "t15.srvptt.com";
+                            env.k8s_config = 'prod-k8s-config';
                             sh "git config --file=.gitmodules submodule.src/components/Wap.branch master";
                             sh "git config --file=.gitmodules submodule.src/components/App/Account.branch master";
                             sh "git config --file=.gitmodules submodule.src/api-services.branch master";
@@ -32,6 +37,7 @@ pipeline {
                             break;
                         case ['release/current', 'origin/release/current']:
                             env.kube_ns = "staging";
+							env.domain = "stg-t15.rpgp.cc";
                             env.k8s_config = 'stag-k8s-config';
                             sh "git config --file=.gitmodules submodule.src/components/Wap.branch release/current";
                             sh "git config --file=.gitmodules submodule.src/components/App/Account.branch release/current";
@@ -40,19 +46,18 @@ pipeline {
                             sh "git submodule update --remote";
                             break;
                         default:
-                            env.kube_ns = "dev";
-                            env.k8s_config = 'k8s-kube-config' 
                             sh "git config --file=.gitmodules submodule.src/components/Wap.branch develop";
                             sh "git config --file=.gitmodules submodule.src/components/App/Account.branch develop";
                             sh "git config --file=.gitmodules submodule.src/api-services.branch develop";
                             sh "git submodule sync";
                             sh "git submodule update --remote";
+                            env.kube_ns = "dev";
+							env.domain = "dev-t15.rpgp.cc";
+                            env.k8s_config = 'k8s-kube-config' 
                             break;
                     }
                     TAG = env.kube_ns + '-' + TAG
-					MergedTag = 'merged-' + TAG
                     message += "\nBranch: ${env.GIT_BRANCH}" 
-                    message += "\nImage: ${Image}"
                     message += "\nTag: ${TAG}"
                     message += "\nEnv: $env.kube_ns"
                     env.commit_url = "${env.GIT_URL}".replace(".git","/-/commit/") + "${env.GIT_COMMIT}"
@@ -65,8 +70,7 @@ pipeline {
                         envItems.each { key, value -> 
                             env."tgs_${key}" = value;
                         }
-                        componentArray = "${env.tgs_lobby_t5_components}".split(",")
-						componentArrayMerged = "${env.tgs_lobby_t5_components_merged}".split(",")
+                        componentArray = "${env.tgs_lobby_t15_components}".split(",")
                     }
                 }
 
@@ -74,19 +78,74 @@ pipeline {
                 sh "echo 'tag: ${TAG}'"
             }
         }	
-        stage('Docker Build') {  
+        stage('Docker Build') {   
             steps {	  			    
-                sh "docker build -t ${Registry}${Image}:${TAG} ."
-                sh "docker build -t ${Registry}${Image}:$env.kube_ns ."
+                sh "docker build -t ${Registry}${LobbyName}:${TAG} ."
             }
         }			
         stage('Docker Push') {   
             steps {	  
-                sh "docker push ${Registry}${Image}:${TAG}"
-                sh "docker push ${Registry}${Image}:$env.kube_ns"
+                sh "docker push ${Registry}${LobbyName}:${TAG}"
             }
         }
-        stage('Deploy') {
+		
+		stage('Deploy Template') {
+			steps {
+				script {
+					withKubeConfig([credentialsId: env.k8s_config]) {
+
+						def backendApi= 'operator-api';
+			
+						message += "name: ${LobbyName} \n" 
+						message += "language: ${DefaultLanguage} \n"
+						message += "currency: ${DefaultCurrency} \n"
+						message += "env: $env.kube_ns \n" 
+					   
+					
+						sh """
+							 helm template deployment \
+								--set nameOverride=${LobbyName} \
+								--set fullnameOverride=${LobbyName} \
+								--set .Chart.Name=lobby \
+								--set lobbyName=${LobbyName}  \
+								--set brand=${Brand}  \
+								--set defaultLanguage=${DefaultLanguage}  \
+								--set apiKey=${ApiKey}  \
+								--set currency=${DefaultCurrency}  \
+								--set theme=${Theme} \
+								--set template=${Template} \
+								--set image.repository=${Registry}${env.LobbyName} \
+								--set brandToken=${tgs_gpi_brand_token} \
+								--set image.tag=${TAG} \
+								--set domain=$env.domain \
+								--set namespace=$env.kube_ns --debug
+						"""
+						
+						sh """
+							helm template deployment \
+								 --set nameOverride=${LobbyName} \
+								--set fullnameOverride=${LobbyName} \
+								--set .Chart.Name=lobby \
+								--set lobbyName=${LobbyName}  \
+								--set brand=${Brand}  \
+								--set defaultLanguage=${defaultLanguage}  \
+								--set apiKey=${ApiKey}   \
+								--set currency=${DefaultCurrency}  \
+							    --set theme=${Theme} \
+								--set template=${Template} \
+								--set image.repository=${Registry}${LobbyName} \
+								--set brandToken=${tgs_gpi_brand_token} \
+								--set image.tag=${TAG} \
+								--set domain=$env.domain \
+								--set namespace=$env.kube_ns \
+								| kubectl -n $env.kube_ns  apply -f - 
+						"""
+					}				
+				}
+			}
+        }
+		
+		stage('Deploy') {
             when {
                 expression {
                     return env.kube_ns == 'prod';
@@ -106,68 +165,17 @@ pipeline {
                 script {			
                     withKubeConfig([credentialsId: env.k8s_config]) {
                         message += "\nComponent:"
-						if (env.tgs_lobby_t5_components!="") {
+
+						if (env.tgs_lobby_t15_components!="") {
 							for (i = 0;i < componentArray.length; i++) {
 								message += "\n    ${componentArray[i]}"
-								sh "kubectl set image deployment/${componentArray[i]} ${componentArray[i]}=${Registry}${Image}:${TAG} --record -n $env.kube_ns"
+								sh "kubectl set image deployment/${componentArray[i]} ${componentArray[i]}=${Registry}${LobbyName}:${TAG} --record -n $env.kube_ns"
 							}
 						}
                     }
                 }
             }
-        }	
-        // stage('Add Tag on Prod') {
-        //     when {
-        //         expression {
-        //             return env.kube_ns == 'prod';
-        //         }
-        //     }					
-        //     steps {	
-        //         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'gitssh-user-pwd', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-        //             sh "git tag -a ${TAG} -m ${TAG}"
-        //             sh "git push https://$USERNAME:$PASSWORD@${GitUrl} --tags"
-        //         }
-        //     }
-        // }	
-        //stage('Remove Image Tags') {					
-        //    steps {	
-        //        withCredentials([string(credentialsId: "GitLabToken", variable: "GitLabToken")]) {					
-        //            sh "curl --request DELETE --data \'name_regex_delete=.*\' --data \'keep_n=10\' --header \'PRIVATE-TOKEN: ${GitLabToken}\' ${ImageTagUrl}"
-        //        }
-        //    }
-        //}
-        // tage('Undo') {
-        //     when {
-        //         expression {
-        //             return env.kube_ns == 'prod';
-        //         }
-        //     }
-        //     steps {
-        //         script {
-        //             timeout(time: 600, unit: 'SECONDS') {
-        //                 input message: 'Ready to Undo?', ok: 'yes';
-        //             }
-        //         }
-                
-        //         sh "echo start deploy"
-        //     }
-        // }
-        // stage('Undo sDeployment') {   
-        //     steps {   
-        //         script {            
-        //             withKubeConfig([credentialsId: env.k8s_config]) {
-        //                 message += "\nComponent:"
-
-        //                 if (env.tgs_lobby_t5_components!="") {
-        //                     for (i = 0;i < componentArray.length; i++) {
-        //                         message += "\n    ${componentArray[i]}"
-        //                         sh "kubectl rollout undo deployment/${componentArray[i]} -n $env.kube_ns"
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }   
+        }
     }
     post {
         success {
