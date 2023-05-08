@@ -41,7 +41,7 @@ pipeline {
                             env.k8s_config = 'stag-k8s-config';
                             sh "git config --file=.gitmodules submodule.src/components/Wap.branch release/current";
                             sh "git config --file=.gitmodules submodule.src/components/App/Account.branch release/current";
-                            sh "git config --file=.gitmodules submodule.src/api-services.branch develop";
+                            sh "git config --file=.gitmodules submodule.src/api-services.branch release/current";
                             sh "git submodule sync";
                             sh "git submodule update --remote";
                             break;
