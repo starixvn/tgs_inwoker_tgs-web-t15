@@ -550,7 +550,7 @@ export const wapT10 = {
   popoverSubWalletText: "#000",
 };
 export const wapT15 = {
-  appbar: "transparent",
+  appbar: "#3C3C3C",
   loginBody: "#F0EFF5",
   loginText: "#676767",
   body: "#F0EFF5",
@@ -558,8 +558,8 @@ export const wapT15 = {
   variant: "wapT8",
   primary: "#CEB296",
   primaryRgb: "101, 138, 248",
-  primaryText: "#d2b79c",
-  wapSecondary:"#d2b79c",
+  primaryText: "#fff",
+  wapSecondary:"#CEB296",
   primaryGradient: "#CEB296",
   primaryGradientRgb: "101, 138, 248",
   primaryHightlight: "#fde73f",
