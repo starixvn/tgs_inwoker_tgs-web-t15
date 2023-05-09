@@ -301,11 +301,10 @@ const Lottery = (props) => {
                     >
                       <img
                         style={{ width: 45 }}
+                        alt={data.abbreviation.toLowerCase()}
                         src={
                           process.env.PUBLIC_URL +
-                          `/assets/images/pcGamePage/lottery/${
-                            data.abbreviation
-                          }${
+                          `/assets/images/pcGamePage/lottery/${data.abbreviation.toLowerCase()}${
                             index === selected
                               ? "-selected.png"
                               : "-not-selected.png"
