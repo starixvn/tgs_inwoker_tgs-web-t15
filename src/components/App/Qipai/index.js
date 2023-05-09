@@ -310,9 +310,7 @@ const Qipai = (props) => {
                       <img
                         src={
                           process.env.PUBLIC_URL +
-                          `/assets/images/pcGamePage/qipai/${
-                            data.abbreviation
-                          }${
+                          `/assets/images/pcGamePage/qipai/${data.abbreviation.toLowerCase()}${
                             index === selected
                               ? "-selected.png"
                               : "-not-selected.png"
@@ -320,7 +318,7 @@ const Qipai = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{data.abbreviation}</div>
+                    <div>{data.abbreviation.replace("TF", "")}</div>
                   </CustomTextContainer>
                 );
               })}
