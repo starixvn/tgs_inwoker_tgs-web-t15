@@ -297,7 +297,7 @@ const Sports = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{data.abbreviation}</div>
+                    <div>{data.abbreviation.replace("TF", "")}</div>
                   </CustomTextContainer>
                 );
               })}

@@ -2,10 +2,12 @@
 import { isMobileOnly } from "react-device-detect";
 import featureList from "./features";
 
-var wapTemplate = window?.env?.wapTemplate || 5; //2 for T2, 3 for T3 (based on .xd file)
+var wapTemplate = window?.env?.wapTemplate || 15; //2 for T2, 3 for T3 (based on .xd file)
 
 const config = {
-  baseUrl: window?.env?.apiUrl || (window?.env ? "/api/" : "https://stg-t1.rpgp.cc/api/"),
+  baseUrl:
+    window?.env?.apiUrl ||
+    (window?.env ? "/api/" : "https://stg-t1.rpgp.cc/api/"),
   client:
     window?.env?.client ||
     "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
