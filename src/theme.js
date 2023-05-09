@@ -611,4 +611,5 @@ export const themeList = {
   PB: PB,
   wapT10: wapT10,
   wapT15: wapT15,
+  SKY8: wapT15,
 };
