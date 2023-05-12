@@ -583,7 +583,7 @@ class Slots extends Component {
               return a.tag.new === true;
             } else if (this.state.filterGame === SlotFilterType.Recommend) {
               return a.tag.recommend === true;
-            } else if (this.state.filterGame === "fav") {
+            } else if (this.state.filterGame === SlotFilterType.Bookmark) {
               return this.state.favGame.indexOf(a.id) > -1;
             }
           }
@@ -611,6 +611,7 @@ class Slots extends Component {
           return (
             <ItemContainer
               key={i}
+              id={"gameId-" + el.id}
               img={`${
                 config.sourceUrl
               }${el.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
