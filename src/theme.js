@@ -551,8 +551,10 @@ export const wapT10 = {
 };
 export const wapT15 = {
   appbar: "#3C3C3C",
-  loginBody: "#F0EFF5",
-  loginText: "#676767",
+  loginBody: `linear-gradient(rgba(27, 29, 48, 0.62), rgba(27, 29, 48, 0.62)), url(${
+    process.env.PUBLIC_URL + `/assets/images/wapp/resource/T15/loginbg.png`
+  }) no-repeat center center / cover`,  
+  loginText: "#FFFFFF",
   body: "#F0EFF5",
   bodyBackground: "#3C3C3C",
   variant: "wapT8",
