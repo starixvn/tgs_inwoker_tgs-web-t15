@@ -192,7 +192,7 @@ const ThirdSection = (props) => {
                     alt={data.abbreviation.toLowerCase()}
                   />
                 </GameSlider>
-                <div>{i18n.t(data.abbreviation + ".sports")}</div>
+                <div>{data.name}</div>
               </CustomTextContainer>
             );
           })}
