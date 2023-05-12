@@ -319,7 +319,7 @@ const GameImg = styled.img`
 const AnotherCustomButton = styled.div`
   position: absolute;
 
-  right: 26px;
+  right: 10px;
   bottom: 54px;
   transition: transform 0.6s;
   transform-origin: bottom center;
@@ -334,12 +334,11 @@ const AnotherCustomButton = styled.div`
 const HeaderTitle = styled.div`
   color: #5a6b90;
   padding-bottom: 20px;
-  padding-left: 30px;
   font-size: 11px;
 `;
 
 const TheTitleWrapper = styled.div`
-  width: 70px;
+  width: 84px;
   height: 50px;
   padding-left: 15px;
   display: flex;
@@ -1243,9 +1242,7 @@ class Header extends Component {
                                           <AnotherCustomButton index={index}>
                                             <HeaderTitle>
                                               <TheTitleWrapper>
-                                                {i18n.t(
-                                                  `${game.abbreviation}.${item.path}`
-                                                )}
+                                                {game.name}
                                               </TheTitleWrapper>
                                             </HeaderTitle>
                                             <Button
@@ -1296,9 +1293,7 @@ class Header extends Component {
                                             <AnotherCustomButton index={index}>
                                               <HeaderTitle>
                                                 <TheTitleWrapper>
-                                                  {i18n.t(
-                                                    `${game.abbreviation}.${item.path}`
-                                                  )}
+                                                  {game.name}
                                                 </TheTitleWrapper>
                                               </HeaderTitle>
                                               <Button
