@@ -696,15 +696,7 @@ class Slots extends Component {
                       key={index}
                       active={this.state.platform == row.abbreviation}
                       click={() => this.handleParentClick(row.abbreviation)}
-                      text={i18n.t(
-                        `${row.abbreviation}.${
-                          this.props.match.url.indexOf("fish") >= 0
-                            ? "fish"
-                            : this.props.match.url.indexOf("slots") >= 0
-                            ? "slots"
-                            : "electron"
-                        }`
-                      )}
+                      text={row.name}
                       variant="2"
                       fontSize="12px"
                     />
