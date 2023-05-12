@@ -301,11 +301,10 @@ const Lottery = (props) => {
                     >
                       <img
                         style={{ width: 45 }}
+                        alt={data.abbreviation.toLowerCase()}
                         src={
                           process.env.PUBLIC_URL +
-                          `/assets/images/pcGamePage/lottery/${
-                            data.abbreviation
-                          }${
+                          `/assets/images/pcGamePage/lottery/${data.abbreviation.toLowerCase()}${
                             index === selected
                               ? "-selected.png"
                               : "-not-selected.png"
@@ -313,7 +312,7 @@ const Lottery = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{i18n.t(`${data.abbreviation}.lottery`)}</div>
+                    <div>{data.abbreviation.replace("TF", "")}</div>
                   </CustomTextContainer>
                 );
               })}
