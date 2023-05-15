@@ -181,6 +181,7 @@ const ThirdSection = (props) => {
                   }}
                 >
                   <img
+                    style={{ width: 50 }}
                     src={
                       process.env.PUBLIC_URL +
                       `/assets/images/pcGamePage/sports/${data.abbreviation.toLowerCase()}${
