@@ -187,6 +187,7 @@ const SecondSection = (props) => {
                   }}
                 >
                   <img
+                    style={{ width: 50 }}
                     src={
                       process.env.PUBLIC_URL +
                       `/assets/images/pcGamePage/live/${data.abbreviation.toLowerCase()}${
