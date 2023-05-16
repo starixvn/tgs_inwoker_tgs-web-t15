@@ -338,9 +338,9 @@ const HeaderTitle = styled.div`
 `;
 
 const TheTitleWrapper = styled.div`
-  width: 84px;
+  width: 88px;
   height: 50px;
-  padding-left: 15px;
+  padding-left: ${(props)=> props.isLottery ? `30px`: `15px`};
   display: flex;
   align-items: center;
 `;
@@ -1241,7 +1241,7 @@ class Header extends Component {
 
                                           <AnotherCustomButton index={index}>
                                             <HeaderTitle>
-                                              <TheTitleWrapper>
+                                              <TheTitleWrapper isLottery={game.type===GameTypeEnum.LOTTERYLOBBY}>
                                                 {game.name}
                                               </TheTitleWrapper>
                                             </HeaderTitle>
@@ -1292,7 +1292,7 @@ class Header extends Component {
 
                                             <AnotherCustomButton index={index}>
                                               <HeaderTitle>
-                                                <TheTitleWrapper>
+                                                <TheTitleWrapper isLottery={game.type===GameTypeEnum.LOTTERYLOBBY}>
                                                   {game.name}
                                                 </TheTitleWrapper>
                                               </HeaderTitle>
