@@ -272,7 +272,7 @@ const LiveGame = (props) => {
   };
   var getLiveGame = props.game.homePageGameList
     .filter((e) => {
-      return e.type === GameTypeEnum.LIVE;
+      return e.type === GameTypeEnum.LIVELOBBY;
     })
     .sort((a, b) => {
       if (config.features.LiveGame_Sorting_SKY) {
@@ -356,7 +356,7 @@ const LiveGame = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{data.abbreviation.replace("TF", "")}</div>
+                    <div>{data.name}</div>
                   </CustomTextContainer>
                 );
               })}

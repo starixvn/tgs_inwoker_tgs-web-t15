@@ -253,7 +253,7 @@ const Sports = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{data.abbreviation}</div>
+                    <div>{data.name}</div>
                   </CustomTextContainer>
                 );
               })}
