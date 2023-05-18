@@ -312,7 +312,7 @@ const Lottery = (props) => {
                         }
                       />
                     </GameSlider>
-                    <div>{i18n.t(`${data.abbreviation}.lottery`)}</div>
+                    <div>{data.name}</div>
                   </CustomTextContainer>
                 );
               })}

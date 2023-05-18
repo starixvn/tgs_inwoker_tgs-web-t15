@@ -199,7 +199,7 @@ const SecondSection = (props) => {
                     alt={data.abbreviation.toLowerCase()}
                   />
                 </GameSlider>
-                <div>{i18n.t(data.abbreviation + ".live")}</div>
+                <div>{data.name}</div>
               </CustomTextContainer>
             );
           })}
