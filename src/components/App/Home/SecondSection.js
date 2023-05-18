@@ -187,6 +187,7 @@ const SecondSection = (props) => {
                   }}
                 >
                   <img
+                    style={{ width: 50 }}
                     src={
                       process.env.PUBLIC_URL +
                       `/assets/images/pcGamePage/live/${data.abbreviation.toLowerCase()}${
@@ -198,7 +199,7 @@ const SecondSection = (props) => {
                     alt={data.abbreviation.toLowerCase()}
                   />
                 </GameSlider>
-                <div>{i18n.t(data.abbreviation + ".live")}</div>
+                <div>{data.name}</div>
               </CustomTextContainer>
             );
           })}
