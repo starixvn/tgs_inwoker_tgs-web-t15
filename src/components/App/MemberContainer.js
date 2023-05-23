@@ -89,6 +89,7 @@ const ContainerText = styled(ContainerInContainer)`
   align-items: flex-start;
   flex-direction: row;
   padding: 2.5px;
+  gap: 2px;
   justify-content: space-between;
 `;
 
@@ -132,8 +133,9 @@ const MemberContainer = (props) => {
       <SpecialHandling>
         <ContainerText onClick={handlePopoverOpen}>
           <div>
-            {props.account.info.member_username}(VIP
-            {props.account.info.member_level_id})
+            {props.account.info.member_username}
+            {config.features.HomePage_DisplayVIP &&
+              `(VIP${props.account.info.member_level_id}) `}
           </div>
           {!config.features.NewTransferUI && (
             <div>
