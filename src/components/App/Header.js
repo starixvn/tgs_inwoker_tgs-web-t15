@@ -228,7 +228,7 @@ const RightMenuContainer = styled.div`
 const RightMenuUL = styled.ul`
   float: left;
   list-style: none;
-  width: 810px;
+  width: 835px;
   padding: 0;
   margin: 0 0 0 10px;
   height: 104px;
@@ -340,7 +340,7 @@ const HeaderTitle = styled.div`
 const TheTitleWrapper = styled.div`
   width: 88px;
   height: 50px;
-  padding-left: ${(props)=> props.isLottery ? `30px`: `15px`};
+  padding-left: ${(props) => (props.isLottery ? `30px` : `15px`)};
   display: flex;
   align-items: center;
 `;
@@ -1241,7 +1241,12 @@ class Header extends Component {
 
                                           <AnotherCustomButton index={index}>
                                             <HeaderTitle>
-                                              <TheTitleWrapper isLottery={game.type===GameTypeEnum.LOTTERYLOBBY}>
+                                              <TheTitleWrapper
+                                                isLottery={
+                                                  game.type ===
+                                                  GameTypeEnum.LOTTERYLOBBY
+                                                }
+                                              >
                                                 {game.name}
                                               </TheTitleWrapper>
                                             </HeaderTitle>
@@ -1292,7 +1297,12 @@ class Header extends Component {
 
                                             <AnotherCustomButton index={index}>
                                               <HeaderTitle>
-                                                <TheTitleWrapper isLottery={game.type===GameTypeEnum.LOTTERYLOBBY}>
+                                                <TheTitleWrapper
+                                                  isLottery={
+                                                    game.type ===
+                                                    GameTypeEnum.LOTTERYLOBBY
+                                                  }
+                                                >
                                                   {game.name}
                                                 </TheTitleWrapper>
                                               </HeaderTitle>
@@ -1347,7 +1357,8 @@ class Header extends Component {
                 i18n.t("common.promotion"),
                 null
               )}
-              {this.RightMenuItem("vip", "VIP", null)}
+              {config.features.HaveVIPFeature &&
+                this.RightMenuItem("vip", "VIP", null)}
             </RightMenuUL>
             <RightContainer>
               {(() => {
