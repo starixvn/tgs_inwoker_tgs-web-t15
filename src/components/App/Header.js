@@ -228,7 +228,7 @@ const RightMenuContainer = styled.div`
 const RightMenuUL = styled.ul`
   float: left;
   list-style: none;
-  width: 810px;
+  width: 835px;
   padding: 0;
   margin: 0 0 0 10px;
   height: 104px;
