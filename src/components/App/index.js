@@ -509,7 +509,9 @@ class App extends Component {
                       path={"/promotion/:id"}
                       render={(props) => <PromotionDetails />}
                     />
-                    <Route exact path={"/vip"} render={(props) => <VIP />} />
+                    {config.features.HaveVIPFeature && (
+                      <Route exact path={"/vip"} render={(props) => <VIP />} />
+                    )}
 
                     <Route
                       exact
@@ -541,11 +543,7 @@ class App extends Component {
                       )}
                     />
                     {config.features.HaveDownloadFeature && (
-                      <Route
-                        exact
-                        path={"/download"}
-                        component={Download}
-                      />
+                      <Route exact path={"/download"} component={Download} />
                     )}
                     <Route
                       exact
