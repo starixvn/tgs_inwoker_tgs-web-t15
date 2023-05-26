@@ -243,6 +243,7 @@ const Sports = (props) => {
                       maintenance={data.status != 0}
                     >
                       <img
+                        style={{ height: 45 }}
                         src={
                           process.env.PUBLIC_URL +
                           `/assets/images/pcGamePage/sports/${data.abbreviation.toLowerCase()}${
