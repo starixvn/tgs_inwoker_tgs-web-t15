@@ -207,7 +207,7 @@ const Sports = (props) => {
               selected={selected}
               src={
                 process.env.PUBLIC_URL +
-                `/assets/images/pcGamePage/sports/${selectedGame.toLowerCase()}.png`
+                `/assets/images/pcGamePage/esports/${selectedGame.toLowerCase()}.png`
               }
             />
           </LeftContentTransition>
@@ -216,12 +216,12 @@ const Sports = (props) => {
           <RightContentTransition imageVisible={imageVisible}>
             <RightContentGameHeader>
               <RightContentGameHeaderZH>
-                {i18n.t(selectedGame.toString() + ".sports")}
+                {i18n.t(selectedGame.toString() + ".esports")}
               </RightContentGameHeaderZH>
               <RightContentGameHeaderEN
                 hide={Common.hideOnLanguage(i18n.language)}
               >
-                {i18n.t(selectedGame.toString() + ".sports", { lng: "en-US" })}
+                {i18n.t(selectedGame.toString() + ".esports", { lng: "en-US" })}
               </RightContentGameHeaderEN>
             </RightContentGameHeader>
             <RightContentItems>
@@ -243,9 +243,10 @@ const Sports = (props) => {
                       maintenance={data.status != 0}
                     >
                       <img
+                        style={{ height: 45 }}
                         src={
                           process.env.PUBLIC_URL +
-                          `/assets/images/pcGamePage/sports/${data.abbreviation.toLowerCase()}${
+                          `/assets/images/pcGamePage/esports/${data.abbreviation.toLowerCase()}${
                             index === selected
                               ? "-selected.png"
                               : "-not-selected.png"
