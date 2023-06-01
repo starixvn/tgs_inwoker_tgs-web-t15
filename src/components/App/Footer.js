@@ -1,12 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid } from "@material-ui/core";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-
-import HomeFooterIcon1PNG from "../../assets/images/home-footer-icon1.png";
-import HomeFooterIcon1ActivePNG from "../../assets/images/home-footer-icon1-active.png";
-import Common from "../../utils/Common";
 import config from "../../config/config";
 import i18n from "../../utils/i18n";
 import Slider from "react-slick";
@@ -20,24 +15,6 @@ const Container = styled.div`
   }};
 `;
 
-const AffAndCSContainer = styled.div`
-  width: 238px;
-  height: 62px;
-  border-radius: 3px;
-  border: solid 1px #f6f6f6;
-  color: #f6f6f6;
-`;
-
-const AffCSRightContentLine1 = styled(Grid)`
-  font-size: 14px;
-
-  display: block;
-`;
-const AffCSRightContentLine2 = styled(Grid)`
-  font-size: 14px;
-  display: block;
-`;
-
 const MiddleContainer = styled.div`
   width: 100%;
 `;
@@ -45,7 +22,7 @@ const MiddleInnerWrap = styled.div`
   display: block;
   margin: 0 auto;
   width: 1280px;
-  padding: 50px 0px;
+  padding: 25px 0px;
 `;
 
 const BrandsImage = styled.div`
@@ -83,25 +60,6 @@ const Version = styled.span`
   margin: 0 auto;
   display: block;
   text-align: center;
-`;
-
-const FooterIconFrame = styled.div`
-  width: 100%;
-  height: 50px;
-`;
-
-const FooterIcon1 = styled(FooterIconFrame)`
-  background: url(${HomeFooterIcon1PNG}) no-repeat center;
-`;
-const FooterColumn = styled.div`
-  border-right: solid 1px #f6f6f6;
-  padding-right: 30px;
-  float: left;
-  padding-top: 15px;
-  width: 200px;
-  &:hover ${FooterIcon1} {
-    background: url(${HomeFooterIcon1ActivePNG}) no-repeat center;
-  }
 `;
 
 const ThirdPartyLogoHolder = styled.div`
