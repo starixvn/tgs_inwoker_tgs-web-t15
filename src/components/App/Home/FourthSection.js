@@ -43,9 +43,8 @@ const Content = styled.div`
 `;
 
 const CustomLogo = styled.img`
-  width: ${() => (config.features.CustomHomePage_PB ? "250px" : "440px")};
+  width: 440px;
   height: auto;
-  margin-bottom: 30px;
 `;
 
 const Description = styled.div`
@@ -53,33 +52,22 @@ const Description = styled.div`
   margin-bottom: 20px;
 `;
 
-const brandSwitcher = () => {
-  if (config.features.CustomHomePage_PB) return GameEnum.JDB;
-  else return GameEnum.KY;
-};
-
 const FourthSection = ({ handleJoinGameClick }) => {
   return (
     <Container>
       <Content>
         <CustomLogo
-          src={
-            process.env.PUBLIC_URL +
-            `/assets/images/pcHomePage/` +
-            brandSwitcher().toLowerCase() +
-            Common.languageAssetsSwitcher(i18n.language) +
-            `.png`
-          }
+          src={process.env.PUBLIC_URL + `/assets/images/pcHomePage/ly.png`}
           alt="kyLogo"
         />
-        <Description>{i18n.t(brandSwitcher() + ".desc")}</Description>
+        <Description>{i18n.t("KY.desc")}</Description>
         <Button
           click={() => {
             handleJoinGameClick(
               "",
               "",
-              brandSwitcher(),
-              "/joingame/" + GameTypeEnum.QIPAILOBBY + "/" + brandSwitcher()
+              GameEnum.LEG,
+              "/joingame/" + GameTypeEnum.QIPAILOBBY + "/" + GameEnum.LEG
             );
           }}
           text={i18n.t("common.joinGame")}
