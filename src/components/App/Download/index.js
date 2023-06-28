@@ -255,6 +255,7 @@ const Download = () => {
       case "PB2":
         return "Atinbet";
       case "SKY8":
+      case "stg_SKY8":
         return "SKY8";
       default:
         return "PB";
