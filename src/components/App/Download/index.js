@@ -298,8 +298,11 @@ const Download = () => {
           {config.features.Download_PointlessDialog && (
             <>
               <QRCodeContainer>
-                <QRCodeHolder style={{ marginBottom: 20 }}>
+                <QRCodeHolder
+                  style={{ marginBottom: 20, padding: 0, border: "none" }}
+                >
                   <img
+                    style={{ height: "100%" }}
                     src={
                       process.env.PUBLIC_URL +
                       `/assets/images/download/brand/${logoSwitcher(
