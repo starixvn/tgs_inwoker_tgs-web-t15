@@ -315,7 +315,10 @@ const Variant2 = () => {
 
               <NewCustomButton
                 onClick={() => {
-                  window.open(data.link, "_blank");
+                  utility.copy(data.link);
+                  enqueueSnackbar(i18n.t("affiliate.copied"), {
+                    variant: "success",
+                  });
                 }}
               >
                 {i18n.t("copy_link")}
