@@ -302,7 +302,7 @@ const Variant2 = () => {
           return (
             <QRCodeContainer>
               <IconAndTitle>
-                <Icons icon={data.platform} />
+                <Icons icon={data.platform && data.platform.toLowerCase()} />
                 <DeviceText>{data.platform}</DeviceText>
               </IconAndTitle>
               <NewCustomButton
