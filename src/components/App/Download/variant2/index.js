@@ -310,15 +310,18 @@ const Variant2 = () => {
                   window.open(data.link, "_blank");
                 }}
               >
-                {i18n.t("download.title")}
+                {i18n.t("click_download")}
               </NewCustomButton>
 
               <NewCustomButton
                 onClick={() => {
-                  window.open(data.link, "_blank");
+                  utility.copy(data.link);
+                  enqueueSnackbar(i18n.t("affiliate.copied"), {
+                    variant: "success",
+                  });
                 }}
               >
-                {i18n.t("common.copy")}
+                {i18n.t("copy_link")}
               </NewCustomButton>
               <QRCodeHolder>
                 <QRCode size={150} value={data.link}></QRCode>

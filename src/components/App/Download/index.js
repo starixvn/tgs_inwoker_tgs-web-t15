@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
-import i18n from "../../../utils/i18n";
 import config from "../../../config/config";
-import QRCode from "react-qr-code";
-
-import { useSnackbar } from "notistack";
-import { utility } from "../../../utils/utility";
 import Variant1 from "./variant1";
 import Variant2 from "./variant2";
 
 const Download = () => {
-  const [open, setOpen] = useState(false);
   const [download, setDownload] = useState([]);
-
-  const [pointlessDialog, setPointlessDialog] = useState(false);
-
-  const { enqueueSnackbar } = useSnackbar();
 
   function getJsonData() {
     return fetch(
@@ -29,13 +19,6 @@ const Download = () => {
       .catch((error) => {
         console.error(error);
       });
-  }
-
-  function copyStupidLink(link) {
-    enqueueSnackbar(i18n.t("pointless.copy"), {
-      variant: "success",
-    });
-    utility.copy(link);
   }
 
   useEffect(() => {
