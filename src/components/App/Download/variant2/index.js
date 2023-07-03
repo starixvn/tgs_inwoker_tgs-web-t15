@@ -310,7 +310,7 @@ const Variant2 = () => {
                   window.open(data.link, "_blank");
                 }}
               >
-                {i18n.t("download.title")}
+                {i18n.t("click_download")}
               </NewCustomButton>
 
               <NewCustomButton
@@ -318,7 +318,7 @@ const Variant2 = () => {
                   window.open(data.link, "_blank");
                 }}
               >
-                {i18n.t("common.copy")}
+                {i18n.t("copy_link")}
               </NewCustomButton>
               <QRCodeHolder>
                 <QRCode size={150} value={data.link}></QRCode>
