@@ -49,6 +49,7 @@ import JoinLotteryGame from "./components/Share/JoinLotteryGame";
 import featureList from "./config/features";
 import FeatureGetter from "./components/Share/feature-getter";
 import config from "./config/config";
+import DepositStatus from "./components/Share/DepositStatus";
 
 require("es6-promise").polyfill();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -135,14 +136,21 @@ const muiTheme = createMuiTheme({
         height: "74px",
         overflow: "visible",
         "& .MuiTabs-indicator": {
-          backgroundColor: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740"),
+          backgroundColor: muiThemeMode.wapSecondary
+            ? muiThemeMode.wapSecondary
+            : "#FDE740",
           height: "5px",
         },
         "& .MuiTabs-indicator:before": {
           content: "'\\A'",
           borderStyle: "solid",
           borderWidth: "0 10px 10px 10px",
-          borderColor: "transparent transparent "+(muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740")+" transparent",
+          borderColor:
+            "transparent transparent " +
+            (muiThemeMode.wapSecondary
+              ? muiThemeMode.wapSecondary
+              : "#FDE740") +
+            " transparent",
           position: "absolute",
           left: "50%",
           top: "-6px",
@@ -160,11 +168,16 @@ const muiTheme = createMuiTheme({
       root: {
         fontSize: "24px",
         maxWidth: "375px",
-        color: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#fff") + " !important",
+        color:
+          (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#fff") +
+          " !important",
         minWidth: "210px",
         height: "64px",
         "&.Mui-selected": {
-          color: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740") +  "!important",
+          color:
+            (muiThemeMode.wapSecondary
+              ? muiThemeMode.wapSecondary
+              : "#FDE740") + "!important",
         },
       },
     },
@@ -245,6 +258,7 @@ const AppWrapper = () => {
                 ref={notistackRef}
               >
                 <Router history={AppHistory}>
+                  <DepositStatus />
                   <Switch>
                     <Route
                       exact
