@@ -595,7 +595,7 @@ export const wapT15 = {
   popoverGameTypeText: "#658AF8",
   popoverSubWalletText: "#000",
   bannerRadius: "0px",
-  customPromoPageTitle: "#000",
+  customPromoPageTitle: "#fff",
 };
 export const themeList = {
   red: themeRed,
