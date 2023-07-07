@@ -553,7 +553,7 @@ export const wapT15 = {
   appbar: "#3C3C3C",
   loginBody: `linear-gradient(rgba(27, 29, 48, 0.62), rgba(27, 29, 48, 0.62)), url(${
     process.env.PUBLIC_URL + `/assets/images/wapp/resource/T15/loginbg.png`
-  }) no-repeat center center / cover`,  
+  }) no-repeat center center / cover`,
   loginText: "#FFFFFF",
   body: "#F0EFF5",
   bodyBackground: "#3C3C3C",
@@ -561,7 +561,7 @@ export const wapT15 = {
   primary: "#CEB296",
   primaryRgb: "101, 138, 248",
   primaryText: "#fff",
-  wapSecondary:"#CEB296",
+  wapSecondary: "#CEB296",
   primaryGradient: "#CEB296",
   primaryGradientRgb: "101, 138, 248",
   primaryHightlight: "#fde73f",
@@ -594,7 +594,8 @@ export const wapT15 = {
   popoverBackground: "rgba(255,255,255,0.95)",
   popoverGameTypeText: "#658AF8",
   popoverSubWalletText: "#000",
-  bannerRadius:"0px"
+  bannerRadius: "0px",
+  customPromoPageTitle: "#000",
 };
 export const themeList = {
   red: themeRed,
