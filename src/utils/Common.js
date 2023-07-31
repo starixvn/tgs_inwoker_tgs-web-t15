@@ -420,7 +420,7 @@ function GetPromoImg(index) {
   return promoImgMap[index % 3];
 }
 
-const baseRouteUrl = `/:locale(zh-CN|zh-TW|en-US|th-TH|vi-VN|id-ID)`;
+const baseRouteUrl = `/:locale(zh-CN|zh-TW|en-US|th-TH|vi-VN|id-ID|hi-IN|ta-IN)`;
 
 const hideOnLanguage = (language) => {
   switch (language) {
