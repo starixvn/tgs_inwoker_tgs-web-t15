@@ -102,10 +102,10 @@ const featureList = {
     MergeEVORTNT: true,
     RouletteNewFlow: false,
     HaveVIPFeature: true,
-    DepositCustomPaymentNames: [
-    ], 
+    DepositCustomPaymentNames: [],
     Withdrawal_WalletTransfer: false,
     Deposit_ManualDepositPassPhone: false,
+    HideRemoveButton: true,
   },
 };
 export default featureList;
