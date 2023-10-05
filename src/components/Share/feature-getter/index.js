@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import config from "../../../config/config";
 import featureList from "../../../config/features";
 
-const FeatureGetter = () => {
+const FeatureGetter = ({ setLoaded }) => {
   const [feature, setFeatures] = useState("");
 
   function getJsonData() {
@@ -10,6 +10,7 @@ const FeatureGetter = () => {
       .then((response) => response.json())
       .then((responseJson) => {
         setFeatures(responseJson);
+        setLoaded(true);
       })
       .catch((error) => {
         console.error(error);
