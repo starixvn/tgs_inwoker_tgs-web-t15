@@ -135,14 +135,21 @@ const muiTheme = createMuiTheme({
         height: "74px",
         overflow: "visible",
         "& .MuiTabs-indicator": {
-          backgroundColor: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740"),
+          backgroundColor: muiThemeMode.wapSecondary
+            ? muiThemeMode.wapSecondary
+            : "#FDE740",
           height: "5px",
         },
         "& .MuiTabs-indicator:before": {
           content: "'\\A'",
           borderStyle: "solid",
           borderWidth: "0 10px 10px 10px",
-          borderColor: "transparent transparent "+(muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740")+" transparent",
+          borderColor:
+            "transparent transparent " +
+            (muiThemeMode.wapSecondary
+              ? muiThemeMode.wapSecondary
+              : "#FDE740") +
+            " transparent",
           position: "absolute",
           left: "50%",
           top: "-6px",
@@ -160,11 +167,16 @@ const muiTheme = createMuiTheme({
       root: {
         fontSize: "24px",
         maxWidth: "375px",
-        color: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#fff") + " !important",
+        color:
+          (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#fff") +
+          " !important",
         minWidth: "210px",
         height: "64px",
         "&.Mui-selected": {
-          color: (muiThemeMode.wapSecondary ? muiThemeMode.wapSecondary : "#FDE740") +  "!important",
+          color:
+            (muiThemeMode.wapSecondary
+              ? muiThemeMode.wapSecondary
+              : "#FDE740") + "!important",
         },
       },
     },
@@ -212,10 +224,56 @@ const AppWrapper = () => {
     }
   }, []);
 
+  const [loaded, setLoaded] = React.useState(false);
+
+  const [dedicatedBanner, setDedicatedBanner] = React.useState();
+
+  React.useEffect(() => {
+    setDedicatedBanner(
+      config.features.DedicatedHomeBanner && isMobileOnly
+        ? config.features.DedicatedHomeBanner?.wap
+        : config.features.DedicatedHomeBanner?.web
+    );
+  }, [loaded]);
+
   if (isReady) {
     return (
       <Provider store={store}>
-        <FeatureGetter />
+        <FeatureGetter setLoaded={setLoaded} />
+        {loaded &&
+          config.features.DedicatedHomeBanner &&
+          window.location.pathname === "/" && (
+            <div
+              style={{
+                background: "rgba(0,0,0,0.5)",
+                position: "fixed",
+                width: "100%",
+                height: "100%",
+                display: dedicatedBanner ? "flex" : "none",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 1101,
+              }}
+              onClick={() => {
+                setDedicatedBanner(false);
+              }}
+            >
+              <img
+                src={
+                  isMobileOnly
+                    ? config.features.DedicatedHomeBanner?.wap
+                    : config.features.DedicatedHomeBanner?.web
+                }
+                alt="banner"
+                style={{ maxWidth: "80vw", maxHeight: "80vh" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  AppHistory.push("/promotion");
+                  setDedicatedBanner(false);
+                }}
+              />
+            </div>
+          )}
         <StylesProvider injectFirst>
           <MuiThemeProvider theme={muiTheme}>
             <ThemeProvider theme={muiThemeMode}>
