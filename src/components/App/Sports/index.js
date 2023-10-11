@@ -155,7 +155,7 @@ const Sports = (props) => {
       if (type === GameTypeEnum.RNGSPORTS) {
         props.history.push("/sports/" + params);
       } else {
-        if (params === "WGFM" || params === "WGVIA") {
+        if (params === "WGFM" || params === "WGVIA" || params === "9WCRICKET") {
           if (document.getElementById("audio") != null)
             document.getElementById("audio").volume = 0.0;
           // props.performBalanceRefresh();
