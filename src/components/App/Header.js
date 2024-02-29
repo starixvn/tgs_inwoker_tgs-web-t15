@@ -759,24 +759,29 @@ class Header extends Component {
   handleMenuMouseLeave = () => {
     this.setState({ ...this.state, isHoverMenu: false });
   };
-  handleClickMenu = (path) => {
-    if (
-      config.features.ForceRedirectAddCard &&
-      !this.props.account.info.bankInfoAuthentication
-    ) {
+  handleClickMenu = (path, requireLogin) => {
+    if (requireLogin && !this.props.account.token) {
+      this.props.showLogin(true);
       return;
+    } else {
+      if (
+        config.features.ForceRedirectAddCard &&
+        !this.props.account.info.bankInfoAuthentication
+      ) {
+        return;
+      }
+      this.setState({ ...this.state, selected: path });
+      this.props.history.push(`/${path}`);
     }
-    this.setState({ ...this.state, selected: path });
-    this.props.history.push(`/${path}`);
   };
 
-  RightMenuItem = (to, label, subMenuImg) => {
+  RightMenuItem = (to, label, subMenuImg, requireLogin) => {
     const { classes } = this.props;
 
     return (
       <RightMenuLI
         active={this.state.selected === `${to}`}
-        onClick={() => this.handleClickMenu(to)}
+        onClick={() => this.handleClickMenu(to, requireLogin)}
         onMouseOver={() => this.handleMenuMouseOver(to)}
         onMouseLeave={this.handleMenuMouseLeave}
         // hoverimg={imageHover}
@@ -1362,7 +1367,7 @@ class Header extends Component {
                 null
               )}
               {config.features.HaveVIPFeature &&
-                this.RightMenuItem("vip", "VIP", null)}
+                this.RightMenuItem("account/vip", "VIP", null, true)}
             </RightMenuUL>
             <RightContainer>
               {(() => {
