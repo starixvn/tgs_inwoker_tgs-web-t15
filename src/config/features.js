@@ -106,6 +106,7 @@ const featureList = {
     Withdrawal_WalletTransfer: false,
     Deposit_ManualDepositPassPhone: false,
     HideRemoveButton: true,
+    SendCodeInterval: 60
   },
 };
 export default featureList;
