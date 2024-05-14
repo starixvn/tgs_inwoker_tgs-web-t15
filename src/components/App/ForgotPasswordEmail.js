@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import { withSnackbar } from "notistack";
 import { AccountService } from "../../api-services/services/AccountService";
 import i18n from "../../utils/i18n";
+import config from "../../config/config";
 const Container = styled.div`
   width: 506px;
   height: 360px;
@@ -154,7 +155,7 @@ class ForgotPasswordEmail extends Component {
               this.props.enqueueSnackbar(i18n.t("common.msgTokenSent"), {
                 variant: "info",
               });
-              this.setState({ ...this.state, countdown: 60 });
+              this.setState({ ...this.state, countdown: config.features.SendCodeInterval || 60 });
               this.checkCountdown();
             } else {
               this.props.enqueueSnackbar(response.info, {
