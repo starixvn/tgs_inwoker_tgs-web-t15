@@ -17,6 +17,7 @@ deploy-dev:
   extends: .deploy-base
   variables:
     namespace: "dev"
+    components: "dev_t15"
   only:
     - develop
 
@@ -24,6 +25,7 @@ deploy-staging:
   extends: .deploy-base
   variables:
     namespace: "staging"
+    components: "staging_t15"
   only:
     - release/current
 
@@ -31,5 +33,6 @@ deploy-prod:
   extends: .deploy-base
   variables:
     namespace: "prod"
+    components: "prod_t15"
   only:
     - master
