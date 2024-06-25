@@ -5,10 +5,7 @@ include:
 
 variables:
   ImageName: pgtgs/lobby-t15
-  GIT_STRATEGY: clone
-  GIT_SUBMODULE_STRATEGY: normal
-  GIT_SUBMODULE_UPDATE_FLAGS: "--remote --checkout --no-single-branch"
-
+  
 build:
   extends: .build
   only:
