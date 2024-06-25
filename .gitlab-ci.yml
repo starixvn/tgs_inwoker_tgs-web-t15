@@ -4,14 +4,10 @@ include:
     file: '/templates/.lobby-deployment.yaml'
 
 variables:
-  ImageName: pgtgs/lobby-t5
-  components_dev: lobby-t5
-  components_staging: lobby-gpi-t5,lobby-demo-t5
-  components_prod: lobby-gpi-t5
+  ImageName: pgtgs/lobby-t15
   GIT_STRATEGY: clone
   GIT_SUBMODULE_STRATEGY: normal
   GIT_SUBMODULE_UPDATE_FLAGS: "--remote --checkout --no-single-branch"
-  API_BRANCH_VARIABLE: $CI_COMMIT_BRANCH
 
 build:
   extends: .build
@@ -21,10 +17,22 @@ build:
     - develop
 
 deploy-dev:
-  extends: .deploy-dev
+  extends: .deploy-base
+  variables:
+    namespace: "dev"
+  only:
+    - develop
 
 deploy-staging:
-  extends: .deploy-staging
-      
+  extends: .deploy-base
+  variables:
+    namespace: "staging"
+  only:
+    - release/current
+
 deploy-prod:
-  extends: .deploy-prod
+  extends: .deploy-base
+  variables:
+    namespace: "prod"
+  only:
+    - master
