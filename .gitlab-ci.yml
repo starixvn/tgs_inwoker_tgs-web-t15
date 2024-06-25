@@ -36,4 +36,3 @@ deploy-prod:
     components: "prod_t15"
   only:
     - master
-    
