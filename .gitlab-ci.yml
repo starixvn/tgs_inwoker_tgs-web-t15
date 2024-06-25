@@ -24,13 +24,19 @@ deploy-dev:
   extends: .deploy-base
   variables:
     namespace: "dev"
+  only:
+    - develop
 
 deploy-staging:
   extends: .deploy-base
   variables:
     namespace: "staging"
+  only:
+    - release/current
 
 deploy-prod:
   extends: .deploy-base
   variables:
     namespace: "prod"
+  only:
+    - master
