@@ -2,6 +2,7 @@ include:
   - project: 'inwoker/tgs/tgs-gitlab-ci-jobs'
     ref: main
     file: '/templates/.lobby-deployment.yaml'
+    
 variables:
   ImageName: pgtgs/lobby-t15
   
