@@ -7,12 +7,12 @@ var wapTemplate = window?.env?.wapTemplate || 15; //2 for T2, 3 for T3 (based on
 const config = {
   baseUrl:
     window?.env?.apiUrl ||
-    (window?.env ? "/api/" : "https://stg-t1.rpgp.cc/api/"),
+    (window?.env ? "/api/" : "https://dev-t15.rpgp.cc/api/"),
   client:
     window?.env?.client ||
     "GWcE0mhlG0JeDmwadQAa5Gfuz7BGEfIWYCVwPPXmVQOQWu5ibE1fsX",
   currency: window?.env?.currency || "HKD",
-  brand: window?.env?.brand || process.env.REACT_APP_BRAND || "SKY8",
+  brand: window?.env?.brand || process.env.REACT_APP_BRAND || "SKY8", 
   brandName: window?.env?.brandName
     ? window?.env?.brandName
     : window?.env?.brand || "SKY8",
