@@ -18,6 +18,8 @@ deploy-dev:
   variables:
     namespace: "dev"
     components: "dev_t15"
+  tags:
+    - dev
   only:
     - develop
 
