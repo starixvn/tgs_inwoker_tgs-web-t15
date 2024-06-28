@@ -2,11 +2,14 @@ include:
   - project: 'inwoker/tgs/tgs-gitlab-ci-jobs'
     ref: main
     file: '/templates/.lobby-deployment.yaml'
+
 variables:
   ImageName: pgtgs/lobby-t15
   
 build:
   extends: .build
+  tags:
+    - local-build
   only:
     - master
     - release/current
@@ -17,6 +20,8 @@ deploy-dev:
   variables:
     namespace: "dev"
     components: "dev_t15"
+  tags:
+    - dev
   only:
     - develop
 
@@ -25,6 +30,8 @@ deploy-staging:
   variables:
     namespace: "staging"
     components: "staging_t15"
+  tags:
+    - staging
   only:
     - release/current
 
@@ -33,5 +40,7 @@ deploy-prod:
   variables:
     namespace: "prod"
     components: "prod_t15"
+  tags:
+    - prod
   only:
     - master
