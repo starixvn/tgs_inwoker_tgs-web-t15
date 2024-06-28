@@ -8,6 +8,8 @@ variables:
   
 build:
   extends: .build
+  tags:
+    - local-build
   only:
     - master
     - release/current
@@ -28,6 +30,8 @@ deploy-staging:
   variables:
     namespace: "staging"
     components: "staging_t15"
+  tags:
+    - staging
   only:
     - release/current
 
@@ -36,5 +40,7 @@ deploy-prod:
   variables:
     namespace: "prod"
     components: "prod_t15"
+  tags:
+    - prod
   only:
     - master
